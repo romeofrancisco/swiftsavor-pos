@@ -1,10 +1,11 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa6";
 import ProductCard from "./Products.ProductCard";
+import { filterProducts } from "../../store/slices/products/productSelector";
 import { useSelector } from "react-redux";
 
 function ProductsContainer() {
-  const { products, loading } = useSelector((state) => state.products);
+  const filteredProducts = useSelector(filterProducts());
 
   return (
     <div className="flex flex-wrap gap-3 py-5">
@@ -18,7 +19,7 @@ function ProductsContainer() {
           Add New Product
         </span>
       </div>
-      {products.map((product) => (
+      {filteredProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
